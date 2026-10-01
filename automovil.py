@@ -37,3 +37,9 @@ class Automovil:
         if valor <= 0:
             raise ValueError("La velocidad máxima debe ser mayor a 0.")
         self._velocidad_max = valor
+
+
+
+        
+    def tiempo_llegada(self, distancia_km: float) -> float:
+        return distancia_km / self.velocidad_max

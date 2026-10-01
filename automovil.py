@@ -43,3 +43,41 @@ class Automovil:
         
     def tiempo_llegada(self, distancia_km: float) -> float:
         return distancia_km / self.velocidad_max
+
+
+
+  
+    def __str__(self) -> str:
+        if self.nivel_combustible < 20:
+            estado = "Reserva (bajo)"
+        elif self.nivel_combustible < 60:
+            estado = "Medio"
+        else:
+            estado = "Alto"
+        return (f"Automóvil {self.marca} {self.modelo} ({self.año_fabricacion}) | "
+                f"Vel. máx: {self.velocidad_max} km/h | "
+                f"Combustible: {self.nivel_combustible}% [{estado}]")
+
+
+# ---- Demostración ----
+auto = Automovil("Toyota", "Corolla", 180.0, 75.0, 2020)
+print(auto)
+print("Tiempo para 360 km:", auto.tiempo_llegada(360), "horas")
+
+auto.nivel_combustible = 40.0
+print("Nuevo nivel de combustible:", auto.nivel_combustible)
+
+try:
+    auto.año_fabricacion = 1800
+except ValueError as e:
+    print("Error de validación (año):", e)
+
+try:
+    auto.nivel_combustible = 150
+except ValueError as e:
+    print("Error de validación (combustible):", e)
+
+try:
+    auto.velocidad_max = 0
+except ValueError as e:
+    print("Error de validación (velocidad):", e)  
